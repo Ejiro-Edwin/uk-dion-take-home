@@ -33,11 +33,11 @@ app.use(function (req, res, next) {
 });
 
 
-const pubRoute = require("./routes/pub");
+const subRoute = require("./routes/sub");
 
 /* Application Routes */
 
-app.use('/api/v1/publish', pubRoute);
+app.use('/api/v1/subscribe', subRoute);
 app.get('/', (req, res) => handleSuccess(res, 200, 'Application is online', null))
 
 // catch 404 and forward to error handler

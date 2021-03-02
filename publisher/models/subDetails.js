@@ -5,14 +5,6 @@ const SubdetailsSchema = new Schema({
         required: true
 
     },
-    isPublished: {
-        type: Boolean,
-        default: false
-    },
-    isDelivered: {
-        type: Boolean,
-        default: false
-    },
     url: {
         type: String,
         required: true

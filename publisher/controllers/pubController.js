@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const message = require('../models/message');
 const subDetail = require('../models/subDetails');
 
-const {addSubSchema} = require("../helper/Validation");
+const {addSubSchema} = require("../helper/validation");
 
 dotenv.config();
 
@@ -48,7 +48,7 @@ class Publisher {
     static async publishContent(req, res) {
 
         try {
-            const sub;
+            let sub;
             const subDetails = await subDetail.find({topic: req.params.topic})
             if (subDetails) {
                 for (sub of subDetails) {

@@ -4,7 +4,10 @@
   "description": "A notification system ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publisher": "node ./publisher/index.js --ignore subscriber",
+    "subscriber": "node ./subscriber/index.js --prefix subscriber",
+    "dev": "concurrently \"npm run publisher\" \"npm run subscriber\""
   },
   "keywords": [],
   "author": "",
