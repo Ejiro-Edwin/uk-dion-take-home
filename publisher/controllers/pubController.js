@@ -46,10 +46,6 @@ class Publisher {
         }
     }
     static async publishContent(req, res) {
-        const fieldError = addTokenVerificationSchema(req.body);
-        if (fieldError.error)
-            return res.status(422).send(fieldError.error.details[0].message);
-
 
         try {
             const sub;
@@ -62,20 +58,28 @@ class Publisher {
                     const publish = await message.create(messageData)
 
                     await axios.post(sub.url, {
-                      topic: req.params.topic,
-                      data: req.body
-                  });
+                        topic: req.params.topic,
+                        data: req.body
+                    });
 
-                  publish.isDelivered = true;
+                    publish.isDelivered = true;
 
-                  await publish.save();
+                    await publish.save();
 
-                  res.status(200).send({status: 200, message: "mesage published successfully", data: publish});
+                    res.status(200).send({status: 200, message: "message published successfully", data: publish});
                 }
             }
 
-        } catch (error) {}
-
+        } catch (err) {
+            res.status(500).send({
+                status: 500,
+                message: 'Unable to publish message',
+                data: {
+                    error: err
+                }
+            });
+            console.log(err);
+        }
 
 
     }
