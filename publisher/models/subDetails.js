@@ -5,6 +5,14 @@ const SubdetailsSchema = new Schema({
         required: true
 
     },
+    isPublished: {
+        type: Boolean,
+        default: false
+    },
+    isDelivered: {
+        type: Boolean,
+        default: false
+    },
     url: {
         type: String,
         required: true
@@ -34,3 +42,4 @@ const SubdetailsSchema = new Schema({
 const Subdetails = model('Subdetails', SubdetailsSchema)
 
 module.exports = Subdetails
+
